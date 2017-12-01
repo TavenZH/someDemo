@@ -1,0 +1,377 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<title>页面demo</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/doc.min.css">
+<!-- <link rel="stylesheet" href="css/datepicker.css" /> -->
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="js/jquery.min.js">
+	
+</script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<!--
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>-->
+<script src="js/hxWebViewUtil.js"></script>
+<!-- <script src="workplan_data.js"></script> -->
+<script src="supervisor_task_details_new.js"></script>
+<script src="supervisor_task_details_data.js"></script>
+</head>
+<style>
+::-webkit-scrollbar{
+  display:none;
+}
+.h4-span{
+	color:blue;
+}
+.col-hr{
+	margin-top:2px;
+	margin-bottom:5px;
+	background-color: black;
+}
+.action_div{
+	margin-left: 10px;
+	margin-right:10px;
+}
+.action_div1{
+	float: left;
+	width:20%;
+	border:none;
+	margin:none;
+	text-align:center;
+}
+.action_img1{
+	width:100%;
+}
+.photo-div-base{
+	height:100%;
+	position:relative;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+.photo-div-x-scoll{
+	overflow:hidden;
+	height:100%;
+}
+.photo-div-panl{
+	height:100%;
+	overflow:hidden;
+	background-color:#E8E8E8;
+	float:left;
+	position: relative;
+	margin-right: 2px;
+}
+.photo-panl-base{
+	overflow:hidden;
+	position: relative;
+	height:100%;
+	width:96%;
+	top:3%;
+	left:2%;
+}
+.photo-template-blue{
+	position: relative;
+	height: 45px;
+	width:100%;
+	background-color: #6699CC;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.photo-template-green{
+	position: relative;
+	height: 45px;
+	width:100%;
+	background-color: #66FF99;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.photo-template-gray{
+	position: relative;
+	height: 45px;
+	width:100%;
+	background-color: #A0A0A0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+
+}
+.photo-template-div1{
+	font-family:"Microsoft YaHei";
+	font-size:24px;
+	color:#252317;
+	line-height:45px;
+	float:left;
+	margin-left: 5%;
+}
+.photo-template-div2{
+	font-family:"Microsoft YaHei";
+	font-size:20px;
+	color:#252317;
+	line-height:45px;
+	float:right;
+	color:white;
+	margin-right: 5%;
+}
+.photo-bottom{
+	position: relative;
+	border:0px;
+	width:100%;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+.photo-bottom-div1{
+	overflow: hidden;
+	background-color: white;
+	width: 100%;
+	margin-bottom:4px;
+}
+.photo-bottom-div2{
+	overflow: hidden;
+	background-color: white;
+	width:100%;
+}
+.bitian{
+	color:red;
+}
+.photo-bottom-div11{
+	margin-left: 5%;
+	font-family:"Microsoft YaHei";
+	font-size:24px;
+	color:#252317;
+	line-height:45px;
+}
+.photo-bottom-div12{
+	margin-left: 5%;
+	margin-bottom: 10px;
+	float: left;
+	width:18%;
+	font-family:"Microsoft YaHei";
+	font-size:18px;
+	color:#252317;
+	line-height:20px;
+}
+.photo-bottom-div13{
+	width:72%;
+	margin-bottom: 10px;
+	float: left;
+	font-family:"Microsoft YaHei";
+	font-size:18px;
+	color:#252317;
+	line-height:20px;	
+}
+
+.photo-bottom-div21{
+	margin-left: 5%;
+	width:95%;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.photo-bottom-div22{
+	margin-bottom: 10px;
+	margin-left: 5%;
+	width:95%;
+	overflow: hidden;
+}
+
+.photo-inter-div1{
+	border:0px;
+	margin:0px;
+	width:25%;
+	overflow:hidden;
+	float: left;
+}
+.photo-inter-div2{
+	border:0px;
+	margin:0px;
+	width:25%;
+	overflow:hidden;
+	float: right;
+
+}
+.photo-inter-img1{
+	width:98%;
+	height:98%;
+	margin:4px;
+	z-index: -1;
+}
+.photo-inter-img2{
+	width:90%;
+	height:90%; 
+}
+.photo-bottom-span1{
+	font-family:"Microsoft YaHei";
+	font-size:18px;
+	color:#252317;
+	line-height:20px;
+}
+.photo-bottom-span2{
+	font-family:"Microsoft YaHei";
+	font-size:14px;
+	color:#252317;
+	line-height:20px;	
+}
+.photo-bottom-span3{
+	font-family:"Microsoft YaHei";
+	font-size:18px;
+	color:#252317;
+	line-height:20px;
+	float: right;
+	margin-right:4px;
+	color:blue;
+}
+.sj-window{
+	position:absolute;
+	z-index:1000;
+	height: 240px;
+	top:35%;
+	width:70%;
+	left:15%;
+	background-color: white;
+	border: 1px solid black;
+	display:none;
+}
+.sj-window-div1{
+	text-align:right;
+	height:40px;
+	width:100%;
+	position: relative;
+}
+.sj-window-div2{
+	text-align:center;
+	font-size: 22px;
+	line-height: 40px;
+	margin-top:5px;
+	width:100%;
+	position: relative;
+}
+.sj-window-div3{
+	text-align:center;
+	height:100px;
+	width:100%;
+	position: relative;
+}
+.sj-window-div4{
+	text-align:center;
+	height:50px;
+	width:100%;
+	position: relative;
+}
+.sj-window-qd{
+	height:40px;
+	width:100px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
+	background-color:blue;
+	color:white;
+	font-size: 25px;
+}
+.sj-window-close{
+	width:30px;
+	height:30px;
+	position:relative;
+	top:4px;
+	right:4px;
+}
+#imgModal{
+	width: 100%;
+	height: 100%;
+	overflow-y:scroll;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background:rgba(38,48,58,0.9);
+	display:none;
+}
+#imgModal img.bigImage{	
+	top:10%;
+	width:96%;
+	height:auto;
+	position: absolute;
+	left: 2%;
+	z-index: 1001;
+}
+</style>
+<body style="overflow:hidden;">
+	<div class="container bs-docs-container" style="overflow:hidden;">
+		<div id="TOP_DIV"/>
+			<div>
+				<form id="basicData">
+					<div>
+						<h3><span id="SINGLE_PROJECT_NAME" class="h4-span"></span></h4>
+						<h5>信息一：<span id="PROJECT_NAME"></span></h5>
+						<h5 id="PROJECT_ADD_ROW">信息二：<span id="PROJECT_ADD"></span></h5>
+						<h5>信息三：<span id="BUILD_DEPT"></span></h5>
+					</div>
+				</form>
+			</div>
+			<hr class="col-hr"/>
+			<div class="row" style="margin-bottom:10px">
+				<div class="action_div">
+					<div class="action_div1" id="viewuser">
+						<img class="action_img1" id="RYHS_IMG" src="images/jlrw/ryhs_1.png" date-cz="1">
+						<div><span>操作1</span></div>
+					</div>
+					<div class="action_div1" id="problemReport">
+						<img class="action_img1" id="WTSB_IMG" src="images/jlrw/wtsb_1.png" date-cz="1">
+						<div><span>操作2</span></div>
+					</div>
+					<div class="action_div1" id="outBtn">
+						<img class="action_img1" id="GCQT_IMG" src="images/jlrw/gcqt_1.png" date-cz="1">
+						<div><span id="LOGIN_IN_OUT">操作3</span></div>
+					</div>
+					<div class="action_div1" id="auditbtn">
+						<img class="action_img1" id="RWTJ_IMG" src="images/jlrw/rwtj_1.png" date-cz="1">
+						<div><span>操作4</span></div>
+					</div>
+					<div class="action_div1">
+						<img class="action_img1" id="DDDH_IMG" src="images/jlrw/dddh_2.png" date-cz="2">
+						<div><span>操作5</span></div>
+					</div>
+				</div>
+			</div>
+	    </div>
+		<div class="row" >
+			<div class="photo-div-base">
+				<div class="photo-div-x-scoll" id="PHOTO_X_SCOLL">
+					<div class="photo-div-panl">
+						<div class="photo-panl-base">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<!--弹出层-->
+	<div class="sj-window">
+		<input id="POINT_APPID" type="hidden"/>
+		<div class="sj-window-div1"><img id="CLOSE_IMG" class="sj-window-close" src="images/close.png"/></div>
+		<div class="sj-window-div2">弹出层1</div>
+		<div class="sj-window-div3" id="SJ_DIV3">
+			<textarea rows="4" style="width:80%;left:10%;line-height:20px;margin:none;" id="BSJ_REASON"></textarea>
+		</div>
+		<div class="sj-window-div4">
+			<input type="button" value="确定" class="sj-window-qd" id="QD_BUTTON"/>
+		</div>
+	</div>
+	<!-- 弹出层2 -->
+    <div id="imgModal">
+        <img class="bigImage"  id="BIG_PHOTO1"/>
+    </div>
+</body>
+</html>
+
+
+
+
