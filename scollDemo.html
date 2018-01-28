@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滚动测试</title>
+	<script type="text/javascript">
+		var oMarquee; //播报的容器
+
+		var BBLineH = 25; //单行高度，像素 
+		var BBScrollAmount = 1; //每次滚动高度，像素 
+
+		var BBShowLineNum = 4; //播报展示的行数
+		var BBLineCount ; //当前这批数据 实际行数 
+
+		var BBAllTime = 0;  //当前这批数据 进行播报的总时间 单位ms
+		var BBuTime = 60000; //播报刷新时间 单位ms
+		var BBuTimeLessData = 60000; //播报刷新时间-少数据量的情况 单位ms
+		var rollRestTime = 2500; //一条新播报滚动完成后，距离下一次滚动的间隔时间 单位ms
+		var rollTime = 10; //播报滚动中的刷新时间 单位ms
+
+		/*
+		 * 获取并展示播报内容，并启动播报滚动事件
+		 */
+		function initBobaoDiv(){
+			BBAllTime = 0;
+			oMarquee = document.getElementById("bobaodiv"); //滚动对象 
+			getNewBobaoDate();
+		}
+
+		function getNewBobaoDate(){
+			var bobaoArray =  new Array("一","二","三","四","五");
+			BBLineCount = bobaoArray.length;
+			showBobaoDate(bobaoArray); 
+    		/*
+ 	 		 * 若未请求到播报数据，或者播报数据小于展示数据量，则1分钟后刷新数据
+ 			 * 否则，滚动播报，10分钟后刷新数据
+    		 */
+     		if(BBLineCount == 0 || BBLineCount <=　BBShowLineNum ){
+    			window.setTimeout( "initBobaoDiv()", BBuTimeLessData );
+    		}else{
+				window.setTimeout( "run()", rollRestTime );
+			}
+		}
+
+		/*
+		 *  展示播报数据
+		 */
+		function showBobaoDate(bobaoArray){
+			if(bobaoArray && bobaoArray.length != 0){
+				oMarquee.innerHTML = "";
+				var liHtml = "";
+				for(var i = 0 ; i < BBLineCount ;  i++){
+					liHtml += "<div id='xcbb_xx'> " 
+							  + "第" + bobaoArray[i] + "行数据"
+							  + "</div>";
+
+				}
+				if(BBLineCount >　BBShowLineNum){//若一页展示不完，则首尾相接用于滚动
+					//@2wl 2017-10-20 滚动时首尾空行
+					liHtml +=  liHtml;
+				}
+				oMarquee.innerHTML = liHtml;
+				oMarquee.scrollTop = 0;
+			}else{
+				oMarquee.innerHTML = "<div id='xcbb_xx'><p><a class='text_yellow'>当前无今日播报</a><a class='text_time'>" ;
+			}
+		}
+
+		/*
+		 * 播报滚动事件主逻辑
+		 */
+		function run() {
+			if(BBScrollAmount == 0){//若单次滚动的距离为0，则开始下一次监听，不计数
+				window.setTimeout( "run()", rollTime );
+				return;
+			}
+			if(BBAllTime >= BBuTime){//滚动BBuTime毫秒后，重新请求数据
+				initBobaoDiv();
+				return;
+			}
+			oMarquee.scrollTop += 1;
+			if ( oMarquee.scrollTop == BBLineCount * BBLineH ) {
+				oMarquee.scrollTop = 0;
+			}
+			if ( oMarquee.scrollTop % BBLineH < 1 && oMarquee.scrollTop > 1) {//scrollTop设置成1后，会变成0.8，具体原因还在找，先这样处理
+				BBAllTime += rollRestTime;
+				window.setTimeout( "run()", rollRestTime );
+			} else {
+				BBAllTime += rollTime;
+				window.setTimeout( "run()", rollTime );
+			}
+		}
+	</script>
+	<style type="text/css">		
+		#bobaodiv{
+			height: 100px;
+			width: 160px;
+			border: 4px solid blue;
+		}
+		#xcbb_xx{
+			height: 25px;
+		}
+	</style>
+</head>
+<body onload="initBobaoDiv()" >
+	 <div id="bobaodiv" style="overflow: hidden;width:100%;" onmouseover="BBScrollAmount=0" onmouseout="BBScrollAmount=1" >
+	</div>
+</body>
+</html>
