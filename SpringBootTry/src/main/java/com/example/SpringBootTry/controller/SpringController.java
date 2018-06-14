@@ -15,9 +15,9 @@ public class SpringController {
 	}
 	
 	@RequestMapping(value="/b",method = RequestMethod.GET)
-	public ModelAndView index(){
+	public String index(){
 		System.out.println("bbbbbb");
-		return new ModelAndView("index");
+		return "index";
 	}
 	
 	@RequestMapping(value="/c")
