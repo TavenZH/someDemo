@@ -26,7 +26,7 @@
 
 	<dependencies>
 
-		<dependency>
+		<!-- <dependency> 高级组件会自动调用这个组件，所以不需要再引用
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -37,7 +37,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!--  <dependency>
+		 <dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-thymeleaf</artifactId>
     	</dependency>
@@ -47,6 +47,10 @@
         	<artifactId>spring-boot-starter-freemarker</artifactId>
     	</dependency>  
 		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

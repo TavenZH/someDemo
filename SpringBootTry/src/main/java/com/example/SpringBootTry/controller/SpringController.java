@@ -1,5 +1,10 @@
 package com.example.SpringBootTry.controller;
 
+/**
+ * 捕获http请求类
+ * 测试用
+ * @author wwl 2018-07-05
+ */
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 
 import com.example.SpringBootTry.bean.People;
+import com.example.SpringBootTry.controller.webSocket.WebSocketUtil;
 
 @Controller
 public class SpringController {	
@@ -91,6 +97,34 @@ public class SpringController {
 	public @ResponseBody String f(People p){
 		System.out.println("fffffffff:" + p.getAge());
 		return p.getAge() + "post测试成功！";
+	}
+	
+	/**
+	 * @param hm
+	 * @return
+	 * 打开websocket通信测试页面
+	 */
+	@RequestMapping(value="/g")
+	public  String g(){
+		return "websocket_test";
+	}
+	
+	/**
+	 * @param hm
+	 * @return
+	 * 测试websocket双工通信：服务端主动发送数据
+	 */
+	@RequestMapping(value="/h")
+	public @ResponseBody String h(String msg){
+		String returnStr = null;
+		WebSocketUtil wsu = new WebSocketUtil();
+		try {
+			wsu.sendInfo(msg);
+			returnStr = "群发消息成功！";
+		} catch (Exception e) {
+			returnStr = "群发消息失败！";
+		}
+		return returnStr;
 	}
 
 }
