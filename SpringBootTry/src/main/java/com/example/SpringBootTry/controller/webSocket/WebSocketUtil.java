@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  */
 @ServerEndpoint(value="/webSocket")
 @Component
-public class WebSocketUtil {
+public class WebSocketUtil{
 	//静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
 

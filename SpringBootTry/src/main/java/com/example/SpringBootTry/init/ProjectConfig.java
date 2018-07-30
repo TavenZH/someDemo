@@ -1,19 +1,23 @@
-package com.example.SpringBootTry.controller.webSocket;
+package com.example.SpringBootTry.init;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
- * 双工通信websocket基础配置类
+ * 基础配置类
  * @author wwl
  *
  */
 @Configuration
-public class WebSocketConfig {
+public class ProjectConfig {
+	
+	/**
+	 * 双工通信配置
+	 * @return
+	 */
 	@Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }
-
 }
